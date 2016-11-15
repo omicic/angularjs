@@ -8,42 +8,34 @@ LunchCheckController.$inject = ['$scope'];
 
 function LunchCheckController($scope) {
 
-$scope.lunch = [];
+$scope.lunch = []; //input array
 $scope.message = "";
-$scope.check = 0;
+//$scope.check = 0;
 var checkarray = [];
 
+      $scope.check = function(){
+          $scope.message = "Please enter data first!";
+          checkarray = $scope.lunch.split(',');
+          var array = [];
 
+          //create array without empty elements
+            for(var i=0;i<checkarray.length;i++){
+              if(checkarray[i]!=""){
+                array.push(checkarray[i]);
+              }
+            }
 
- //var nesto = $scope.lunch.split(',')[0];
-$scope.check = function(){
-  $scope.message = "Please enter data first!"
-  //= checksize.length;
-checkarray = $scope.lunch.split(',');
-var array = [];
-  for(var i=0;i<checkarray.length;i++){
-    if(checkarray[i]!=""){
-      //$scope.message = "brise";
-
-      array.push(checkarray[i]);
-    }
-  }
-
-// $scope.message = array.length;
-if(array.length!=0)
-  {
-    if(array.length<=3 ){
-         $scope.message = "Enjoy!"
-     } else {
-         $scope.message = "Too much!"
-     }
-  }else {
-      $scope.message = "Please enter data first"
-  }
-
-
-  };
-
+            if(array.length!=0)
+              {
+                if(array.length<=3 ){
+                     $scope.message = "Enjoy!"
+                 } else {
+                     $scope.message = "Too much!"
+                 }
+              }else {
+                  $scope.message = "Please enter data first!"
+              }
+        };
 }
 
 })();
