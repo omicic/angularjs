@@ -1,0 +1,8 @@
+
+
+<ol style="margin-top: 100px">
+<li ng-repeat="item in list.found">
+	{{item.name}} 
+	<button ng-click="list.removeFoundItem($index);">Don't want this one!</button>
+</li>
+</ol>
