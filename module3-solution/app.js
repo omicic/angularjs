@@ -9,13 +9,22 @@
 		function FoundItemsDirective (){
 			var ddo = {
 				templateUrl: 'foundItems.html',
+				scope: {
+					found:'<',
+					onRemove: '&'
+				},
+				controller: FoundItemsDirectiveController,
+				controllerAs: 'list',
+				bindToController: true
 			};
 
 			return ddo;
 		}
 
 
-
+function FoundItemsDirectiveController(){
+	var list = this;
+}
 
 
 		NarrowItDownController.$inject = ['MenuSearchService'];
@@ -28,6 +37,8 @@
 			promise.then(function (response){
 
 				list.items = response.data;
+
+				console.log(list.items);
 				list.checkSearchTerm = function(searchTerm){
 					list.found = MenuSearchService.checkSearchTerm(searchTerm, list.items);	
 					console.log(list.found.length);		
