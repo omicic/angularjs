@@ -37,11 +37,15 @@ function FoundItemsDirectiveController(){
 			promise.then(function (response){
 
 				list.items = response.data;
-
-				console.log(list.items);
+			
 				list.checkSearchTerm = function(searchTerm){
-					list.found = MenuSearchService.checkSearchTerm(searchTerm, list.items);	
-					console.log(list.found.length);		
+					
+					if(searchTerm == ""){
+						list.found=[];
+					} else { 
+						list.found = MenuSearchService.checkSearchTerm(searchTerm, list.items);	
+					}
+						
 				};
 
 			})
@@ -74,13 +78,15 @@ function FoundItemsDirectiveController(){
 
 
 			service.checkSearchTerm = function(searchTerm, list){
-				//founditems = [];
+				var found = [];
 				for(var i=0;i<list.menu_items.length;i++){
 					var descr = list.menu_items[i].description;
 					if(descr.indexOf(searchTerm) !== -1){
 						found.push(list.menu_items[i]);
 					}
 				}
+
+				console.log(found);
 
 				return found;
 
