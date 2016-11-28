@@ -78,7 +78,7 @@ function FoundItemsDirectiveController(){
 
 
 			service.checkSearchTerm = function(searchTerm, list){
-				var found = [];
+				//var found = [];
 				for(var i=0;i<list.menu_items.length;i++){
 					var descr = list.menu_items[i].description;
 					if(descr.indexOf(searchTerm) !== -1){
@@ -86,7 +86,7 @@ function FoundItemsDirectiveController(){
 					}
 				}
 
-				console.log(found);
+				//console.log(found);
 
 				return found;
 
