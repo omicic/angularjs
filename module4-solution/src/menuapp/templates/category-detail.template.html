@@ -1,7 +1,16 @@
 <a ui-sref="home">Home</a> &lt;
 <a ui-sref="mainList">List</a> &lt;
 
-<span> {{ itemDetail.name }} </span>
-<div>Item name: {{ itemDetail.name }}</div>
-<div>Item quantity: {{ itemDetail.quantity }}</div>
-<div>Item description: {{ itemDetail.description }}</div>
+<span> {{ MenuCategoryDetail.name }} </span>
+
+
+<h2 id="menu-categories-title" class="text-center">
+    {{ menuItemsCtrl.menuItems.category.name}} Menu
+  </h2>
+  <div class="text-center">
+    {{ menuItemsCtrl.menuItems.category.special_instructions}}
+  </div>
+
+  <menu-item ng-repeat="menuItem in MenuCategoryDetail.menuitems.menu_items"
+             menu-item="menuCategoryDetail">
+  </men

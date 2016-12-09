@@ -1,7 +1,7 @@
 (function () {
 'use strict';
 
-angular.module('MenuApp')
+angular.module('data')
 .config(RoutesConfig);
 
 RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -25,23 +25,26 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     templateUrl: 'src/menuapp/templates/main-menuapp.template.html',
     controller: 'MainMenuAppController as mainList',
     resolve: {
-      categories: ['MenuAppService', function (MenuAppService) {
-        return MenuAppService.getCategories();
+      categories: ['MenuDataService', function (MenuDataService) {
+        return MenuDataService.getAllCategories();
       }]
     }
   })
 
-    .state('menucategorydetail', {
-      url: '/main-list/{category}',
-      templateUrl: 'src/menuapp/templates/category-detail.template.html',
-      controller: 'MenuCategoryDetailController',
-      controllerAs: 'MenuCategoryDetail',
+    .state('mainList.menuitems', {
+      url: '/{category}',
+      templateUrl: 'src/menuapp/templates/menu-items.html',
+      controller: 'MenuItemsController as menuItemsCtrl',
       resolve: {
-        menuCategoryDetail: ['$stateParams','MenuAppService', function ($stateParams, MenuAppService) {
-          return MenuAppService.getMenuItems($stateParams.category);
+        menuItems: ['$stateParams','MenuDataService', function ($stateParams, MenuDataService) {
+          return MenuDataService.getItemsForCategory($stateParams.category);
         }]
       }
+
+
     });
+
+
 }
 
 })();
